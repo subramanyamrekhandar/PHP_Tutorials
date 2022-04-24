@@ -4,15 +4,21 @@
   <title>Login</title>
 </head>
 <style>
-/* Full-width input fields */
+
+    /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 15px;
+  margin: 5px 0 22px 0;
   display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  height: 70px;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
 }
 
 /* Set a style for all buttons */
@@ -24,38 +30,28 @@ button {
   border: none;
   cursor: pointer;
   width: 100%;
+  opacity: 0.9;
 }
 
 button:hover {
-  opacity: 0.8;
+  opacity:1;
 }
 
 /* Extra styles for the cancel button */
 .cancelbtn {
-  width: auto;
-  padding: 10px 18px;
+  padding: 14px 20px;
   background-color: #f44336;
 }
 
-/* Center the image and position the close button */
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-  position: relative;
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
 }
 
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
+/* Add padding to container elements */
 .container {
   padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
 }
 
 /* The Modal (background) */
@@ -68,9 +64,8 @@ span.psw {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
+  background-color: #474e5d;
+  padding-top: 50px;
 }
 
 /* Modal Content/Box */
@@ -81,86 +76,75 @@ span.psw {
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
 /* The Close Button (x) */
 .close {
   position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
   font-weight: bold;
+  color: #f1f1f1;
 }
 
 .close:hover,
 .close:focus {
-  color: red;
+  color: #f44336;
   cursor: pointer;
 }
 
-/* Add Zoom Animation */
-.animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
-}
-.sing{
-  margin-left: 55rem;
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
-@-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)} 
-  to {-webkit-transform: scale(1)}
-}
-  
-@keyframes animatezoom {
-  from {transform: scale(0)} 
-  to {transform: scale(1)}
-}
-
-/* Change styles for span and cancel button on extra small screens */
+/* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
+  .cancelbtn, .signupbtn {
      width: 100%;
   }
 }
 </style>
 <body>
- 
-
-  
-  <form class="modal-content animate" action="/insert.php" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <h3 class="avtar">Login</h3>
-    </div>
-
+<form class="modal-content" action="/action_page.php">
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <label class="sing" for="uname"><b>Need an act !
-        <a href="singin.php">Singin</a>
-      </b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      </label>
+
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">
+            <a href="form.php">
+                Sign Up
+            </a>    
+            </button>
+      </div>
     </div>
   </form>
 
-
- <?php
+  <?php
    $result = mysqli_query($cser, "SELECT * FROM register ORDER BY id DESC"); // using mysqli_query instead
    ?>
        <input width='30%' border=0>
@@ -181,6 +165,12 @@ span.psw {
            }
            ?>
        </input>
- 
+
+
+
+
+
+
+
 </body>
-</html>
+</html>        
