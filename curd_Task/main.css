@@ -1,0 +1,19 @@
+.container{
+    width:100%;
+    height: 50px;
+    background-color: blue;
+   
+}
+h1{
+    text-align:center;
+}
+.GroBtn{
+    margin-left: 500px;
+}
+.containerBtn{
+    margin-left: 60px;
+}
+table{
+    background-color: red;
+    
+}
